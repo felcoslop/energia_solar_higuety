@@ -167,16 +167,31 @@ if not df_filtered.empty:
     # Multiply PR by 100 for percentage display
     df_anual['PR Médio'] = df_anual['PR Médio'] * 100
     
-    st.dataframe(
-        df_anual, 
-        use_container_width=True,
-        column_config={
-            "PR Médio": st.column_config.NumberColumn(
-                "PR Médio",
-                format="%.2f%%"
-            )
-        }
-    )
+    colA1, colA2 = st.columns([1, 1])
+
+    with colA1:
+        st.dataframe(
+            df_anual, 
+            use_container_width=True,
+            column_config={
+                "PR Médio": st.column_config.NumberColumn(
+                    "PR Médio",
+                    format="%.2f%%"
+                )
+            }
+        )
+    
+    with colA2:
+        st.dataframe(
+            df_anual, 
+            use_container_width=True,
+            column_config={
+                "PR Médio": st.column_config.NumberColumn(
+                    "PR Médio",
+                    format="%.2f%%"
+                )
+            }
+        )
     
     st.markdown("---")
     
@@ -195,16 +210,19 @@ if not df_filtered.empty:
     # Multiply PR by 100 for percentage display
     df_mensal['PR Médio'] = df_mensal['PR Médio'] * 100
     
-    st.dataframe(
-        df_mensal[['Ano', 'Mês', 'CAD', 'Energia Total (kWh)', 'PR Médio', 'Energia Específica Média']], 
-        use_container_width=True,
-        column_config={
-            "PR Médio": st.column_config.NumberColumn(
-                "PR Médio",
-                format="%.2f%%"
-            )
-        }
-    )
+    colM1, colM2 = st.columns([1, 1])
+
+    with colM1:
+        st.dataframe(
+            df_mensal[['Ano', 'Mês', 'CAD', 'Energia Total (kWh)', 'PR Médio', 'Energia Específica Média']], 
+            use_container_width=True,
+            column_config={
+                "PR Médio": st.column_config.NumberColumn(
+                    "PR Médio",
+                    format="%.2f%%"
+                )
+            }
+        )
     
     st.markdown("---")
     
