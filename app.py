@@ -224,6 +224,8 @@ if not df_filtered.empty:
             font_color='#D3C8E7',
             xaxis=dict(showgrid=False),
             yaxis=dict(showgrid=True, gridcolor='rgba(255,255,255,0.1)'),
+            margin=dict(l=20, r=20, t=30, b=20),
+            legend=dict(orientation="h", yanchor="bottom", y=1.02, xanchor="right", x=1)
         )
         fig_mensal.update_traces(marker_line_width=0)
         st.plotly_chart(fig_mensal, use_container_width=True)
@@ -234,13 +236,20 @@ if not df_filtered.empty:
         df_mensal_pr = df_mensal.copy()
         df_mensal_pr['Ano'] = df_mensal_pr['Ano'].astype(str)
         
+        # Define specific colors for years
+        color_map = {
+            '2023': '#29B5E8',  # Blue
+            '2024': '#9747FF',  # Purple
+            '2025': '#FFDD44'   # Yellow (fallback/future)
+        }
+        
         fig_pr = px.line(
             df_mensal_pr,
             x='Mês',
             y='PR Médio',
             color='Ano',
             markers=True,
-            color_discrete_sequence=['#E0D5FF', '#FFDD44', '#FF6A2A']
+            color_discrete_map=color_map
         )
         fig_pr.update_layout(
             plot_bgcolor='rgba(0,0,0,0)',
@@ -250,8 +259,10 @@ if not df_filtered.empty:
             yaxis=dict(
                 showgrid=True, 
                 gridcolor='rgba(255,255,255,0.1)',
-                tickformat='.1%'  # Format y-axis as percentage
+                tickformat='.1%'
             ),
+            margin=dict(l=20, r=20, t=30, b=20),
+            legend=dict(orientation="h", yanchor="bottom", y=1.02, xanchor="right", x=1)
         )
         # Update hover template to show percentage
         fig_pr.update_traces(hovertemplate='Mês=%{x}<br>PR Médio=%{y:.2%}<br>Ano=%{legendgroup}')
@@ -280,6 +291,8 @@ if not df_filtered.empty:
             font_color='#D3C8E7',
             xaxis=dict(showgrid=True, gridcolor='rgba(255,255,255,0.1)', title='Irradiação (kWh/m².dia)'),
             yaxis=dict(showgrid=True, gridcolor='rgba(255,255,255,0.1)', title='Energia (kWh)'),
+            margin=dict(l=20, r=20, t=30, b=20),
+            legend=dict(orientation="h", yanchor="bottom", y=1.02, xanchor="right", x=1)
         )
         st.plotly_chart(fig_scatter, use_container_width=True)
     else:
@@ -301,6 +314,7 @@ if not df_filtered.empty:
         font_color='#D3C8E7',
         xaxis=dict(showgrid=False),
         yaxis=dict(showgrid=True, gridcolor='rgba(255,255,255,0.1)'),
+        margin=dict(l=20, r=20, t=30, b=20)
     )
     st.plotly_chart(fig_ts, use_container_width=True)
 
