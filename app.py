@@ -210,7 +210,8 @@ if not df_filtered.empty:
     
     with col1:
         st.subheader("Energia Mensal")
-        fig_mensal = px.bar(
+        df_mensal['Ano'] = df_mensal['Ano'].astype(str)
+fig_mensal = px.bar(
             df_mensal,
             x='Mês',
             y='Energia Total (kWh)',
