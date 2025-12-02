@@ -1,0 +1,41 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+
+# Virtual environments
+venv/
+env/
+ENV/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Inspection files (these are test/debug files)
+inspect_data.py
+inspect_data_cad3.py
+inspect_data_file.py
+inspection_output.txt
+inspection_output_cad3.txt
+
+# Git
+.git/
+.gitignore
+
+# Documentation (but keep important files)
+README.md
+
+# IMPORTANT: Do NOT ignore these files - they are required for the app
+# !Monitoramento (1).xlsx
+# !Gemini_Generated_Image_da229vda229vda22.png
+# !style.css
+# !.streamlit/

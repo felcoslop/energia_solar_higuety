@@ -1,0 +1,165 @@
+/* Global Settings */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
+
+html,
+body,
+[class*="css"] {
+    font-family: 'Inter', sans-serif;
+    color: #D3C8E7;
+    /* Texto Secundário */
+}
+
+/* Hide Streamlit Header */
+header[data-testid="stHeader"] {
+    display: none !important;
+}
+
+/* Background Image */
+.stApp {
+    background-image: url("data:image/png;base64,PLACEHOLDER_BASE64");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+/* Glassmorphism Containers */
+.css-1r6slb0,
+.css-12oz5g7,
+.stMetric,
+.stPlotlyChart,
+.stDataFrame {
+    background: rgba(47, 28, 70, 0.6);
+    /* Cards / Containers with opacity */
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-radius: 16px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 20px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+}
+
+/* Titles */
+h1,
+h2,
+h3 {
+    color: #FFFFFF !important;
+    font-weight: 700;
+}
+
+/* Metrics */
+[data-testid="stMetricValue"] {
+    color: #FF6A2A !important;
+    /* Laranja Vivo */
+    font-size: 2rem !important;
+}
+
+[data-testid="stMetricLabel"] {
+    color: #A291BB !important;
+    /* Texto Suave */
+}
+
+/* Sidebar */
+[data-testid="stSidebar"] {
+    background-color: rgba(30, 15, 43, 0.9);
+    /* Primário - Roxo Escuro */
+    border-right: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Buttons */
+.stButton>button {
+    background: linear-gradient(90deg, #FF3366 0%, #FF6A2A 100%);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    padding: 10px 24px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.stButton>button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(255, 51, 102, 0.4);
+}
+
+/* Charts Background */
+.js-plotly-plot .plotly .main-svg {
+    background: transparent !important;
+}
+
+/* DataFrames - Glassmorphism */
+[data-testid="stDataFrame"] {
+    background: rgba(47, 28, 70, 0.6) !important;
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-radius: 16px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+[data-testid="stDataFrame"] table {
+    background: transparent !important;
+}
+
+[data-testid="stDataFrame"] thead tr th {
+    background: rgba(47, 28, 70, 0.8) !important;
+    color: #FFFFFF !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2) !important;
+}
+
+[data-testid="stDataFrame"] tbody tr {
+    background: transparent !important;
+}
+
+[data-testid="stDataFrame"] tbody tr:hover {
+    background: rgba(255, 106, 42, 0.1) !important;
+}
+
+[data-testid="stDataFrame"] tbody tr td {
+    color: #D3C8E7 !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05) !important;
+}
+
+/* Filter Inputs - Glassmorphism */
+.stDateInput>div>div,
+.stMultiSelect>div,
+.stSelectbox>div,
+input,
+select {
+    background: rgba(47, 28, 70, 0.6) !important;
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+    border-radius: 8px;
+    color: #D3C8E7 !important;
+}
+
+.stDateInput input,
+.stMultiSelect input,
+.stSelectbox select {
+    background: rgba(47, 28, 70, 0.6) !important;
+    color: #D3C8E7 !important;
+}
+
+/* Multiselect tags */
+.stMultiSelect span[data-baseweb="tag"] {
+    background: rgba(255, 106, 42, 0.3) !important;
+    color: #FFFFFF !important;
+    border: 1px solid rgba(255, 106, 42, 0.5) !important;
+}
+
+/* Dropdown menus */
+[data-baseweb="popover"] {
+    background: rgba(30, 15, 43, 0.95) !important;
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+}
+
+[role="option"] {
+    background: transparent !important;
+    color: #D3C8E7 !important;
+}
+
+[role="option"]:hover {
+    background: rgba(255, 106, 42, 0.2) !important;
+}
