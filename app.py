@@ -162,9 +162,13 @@ if not df_filtered.empty:
         'Energia_Especifica_kWh_kWp': 'mean'
     }).reset_index()
     
-    df_anual.columns = ['Ano', 'CAD', 'Energia Total (kWh)', 'PR Médio', 'Potência kWp Média', 'Energia Específica Média']
+    # Format PR as percentage for display
+    df_anual_display = df_anual.copy()
+    df_anual_display['PR_Mensal'] = df_anual_display['PR_Mensal'].apply(lambda x: f"{x:.2%}" if pd.notna(x) else "N/A")
     
-    st.dataframe(df_anual, use_container_width=True)
+    df_anual_display.columns = ['Ano', 'CAD', 'Energia Total (kWh)', 'PR Médio', 'Potência kWp Média', 'Energia Específica Média']
+    
+    st.dataframe(df_anual_display, use_container_width=True)
     
     st.markdown("---")
     
@@ -177,10 +181,14 @@ if not df_filtered.empty:
         'Energia_Especifica_kWh_kWp': 'mean'
     }).reset_index()
     
-    df_mensal['Mes_Nome'] = df_mensal['Mes'].map(months)
-    df_mensal.columns = ['Ano', 'Mes_Num', 'CAD', 'Energia Total (kWh)', 'PR Médio', 'Energia Específica Média', 'Mês']
+    # Format PR as percentage for display
+    df_mensal_display = df_mensal.copy()
+    df_mensal_display['PR_Mensal'] = df_mensal_display['PR_Mensal'].apply(lambda x: f"{x:.2%}" if pd.notna(x) else "N/A")
     
-    st.dataframe(df_mensal[['Ano', 'Mês', 'CAD', 'Energia Total (kWh)', 'PR Médio', 'Energia Específica Média']], use_container_width=True)
+    df_mensal_display['Mes_Nome'] = df_mensal_display['Mes'].map(months)
+    df_mensal_display.columns = ['Ano', 'Mes_Num', 'CAD', 'Energia Total (kWh)', 'PR Médio', 'Energia Específica Média', 'Mês']
+    
+    st.dataframe(df_mensal_display[['Ano', 'Mês', 'CAD', 'Energia Total (kWh)', 'PR Médio', 'Energia Específica Média']], use_container_width=True)
     
     st.markdown("---")
     
@@ -229,8 +237,14 @@ if not df_filtered.empty:
             paper_bgcolor='rgba(0,0,0,0)',
             font_color='#D3C8E7',
             xaxis=dict(showgrid=False),
-            yaxis=dict(showgrid=True, gridcolor='rgba(255,255,255,0.1)'),
+            yaxis=dict(
+                showgrid=True, 
+                gridcolor='rgba(255,255,255,0.1)',
+                tickformat='.1%'  # Format y-axis as percentage
+            ),
         )
+        # Update hover template to show percentage
+        fig_pr.update_traces(hovertemplate='Mês=%{x}<br>PR Médio=%{y:.2%}<br>Ano=%{legendgroup}')
         st.plotly_chart(fig_pr, use_container_width=True)
     
     # Daily Energy vs Irradiation Scatter

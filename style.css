@@ -7,11 +7,19 @@ body,
     font-family: 'Inter', sans-serif;
     color: #D3C8E7;
     /* Texto Secundário */
+    overflow-x: hidden;
+    /* Prevent horizontal scroll on mobile */
 }
 
-/* Hide Streamlit Header */
+/* Fix Streamlit Header - Make transparent but keep visible for sidebar toggle */
 header[data-testid="stHeader"] {
-    display: none !important;
+    background: transparent !important;
+    z-index: 999;
+}
+
+/* Hide decoration line if needed, but keep header for toggle */
+header[data-testid="stHeader"]>div:first-child {
+    background: transparent !important;
 }
 
 /* Background Image */
