@@ -232,22 +232,26 @@ if not df_filtered.empty:
             xaxis=dict(showgrid=False),
             yaxis=dict(showgrid=True, gridcolor='rgba(255,255,255,0.1)'),
             margin=dict(l=20, r=20, t=30, b=20),
-            legend=dict(orientation="h", yanchor="bottom", y=1.02, xanchor="right", x=1)
+            legend=dict(
+                orientation="h",
+                yanchor="bottom",
+                y=1.02,
+                xanchor="left",
+                x=0
+            )
         )
         fig_mensal.update_traces(marker_line_width=0)
         st.plotly_chart(fig_mensal, use_container_width=True)
     
     with col2:
         st.subheader("Evolução do PR")
-        # Convert year to string for proper legend display
         df_mensal_pr = df_mensal.copy()
         df_mensal_pr['Ano'] = df_mensal_pr['Ano'].astype(str)
         
-        # Define specific colors for years
         color_map = {
-            '2023': '#29B5E8',  # Blue
-            '2024': '#9747FF',  # Purple
-            '2025': '#FFDD44'   # Yellow (fallback/future)
+            '2023': '#29B5E8',
+            '2024': '#9747FF',
+            '2025': '#FFDD44'
         }
         
         fig_pr = px.line(
@@ -269,9 +273,14 @@ if not df_filtered.empty:
                 tickformat='.1%'
             ),
             margin=dict(l=20, r=20, t=30, b=20),
-            legend=dict(orientation="h", yanchor="bottom", y=1.02, xanchor="right", x=1)
+            legend=dict(
+                orientation="h",
+                yanchor="bottom",
+                y=1.02,
+                xanchor="left",
+                x=0
+            )
         )
-        # Update hover template to show percentage
         fig_pr.update_traces(hovertemplate='Mês=%{x}<br>PR Médio=%{y:.2%}<br>Ano=%{legendgroup}')
         st.plotly_chart(fig_pr, use_container_width=True)
     
@@ -284,6 +293,11 @@ if not df_filtered.empty:
     ].copy()
     
     if not df_scatter.empty:
+
+        # >>> ALTERAÇÃO PARA MOSTRAR SOMENTE 2023, 2024, 2025 <<< 
+        df_scatter['Ano'] = df_scatter['Ano'].astype(str)
+        df_scatter = df_scatter[df_scatter['Ano'].isin(['2023', '2024', '2025'])]
+
         fig_scatter = px.scatter(
             df_scatter,
             x='Irradiacao_Mensal',
@@ -299,12 +313,17 @@ if not df_filtered.empty:
             xaxis=dict(showgrid=True, gridcolor='rgba(255,255,255,0.1)', title='Irradiação (kWh/m².dia)'),
             yaxis=dict(showgrid=True, gridcolor='rgba(255,255,255,0.1)', title='Energia (kWh)'),
             margin=dict(l=20, r=20, t=30, b=20),
-            legend=dict(orientation="h", yanchor="bottom", y=1.02, xanchor="right", x=1)
+            legend=dict(
+                orientation="h",
+                yanchor="bottom",
+                y=1.02,
+                xanchor="left",
+                x=0
+            )
         )
         st.plotly_chart(fig_scatter, use_container_width=True)
     else:
         st.info("Dados insuficientes para o gráfico de dispersão.")
-
     
     # Time series - Daily Energy
     st.subheader("Série Temporal - Energia Diária")
