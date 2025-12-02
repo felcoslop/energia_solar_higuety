@@ -164,6 +164,9 @@ if not df_filtered.empty:
     
     df_anual.columns = ['Ano', 'CAD', 'Energia Total (kWh)', 'PR Médio', 'Potência kWp Média', 'Energia Específica Média']
     
+    # Multiply PR by 100 for percentage display
+    df_anual['PR Médio'] = df_anual['PR Médio'] * 100
+    
     st.dataframe(
         df_anual, 
         use_container_width=True,
@@ -189,6 +192,9 @@ if not df_filtered.empty:
     df_mensal['Mes_Nome'] = df_mensal['Mes'].map(months)
     df_mensal.columns = ['Ano', 'Mes_Num', 'CAD', 'Energia Total (kWh)', 'PR Médio', 'Energia Específica Média', 'Mês']
     
+    # Multiply PR by 100 for percentage display
+    df_mensal['PR Médio'] = df_mensal['PR Médio'] * 100
+    
     st.dataframe(
         df_mensal[['Ano', 'Mês', 'CAD', 'Energia Total (kWh)', 'PR Médio', 'Energia Específica Média']], 
         use_container_width=True,
@@ -211,7 +217,7 @@ if not df_filtered.empty:
     with col1:
         st.subheader("Energia Mensal")
         df_mensal['Ano'] = df_mensal['Ano'].astype(str)
-fig_mensal = px.bar(
+        fig_mensal = px.bar(
             df_mensal,
             x='Mês',
             y='Energia Total (kWh)',
